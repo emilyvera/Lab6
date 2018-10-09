@@ -102,8 +102,46 @@ public class Colosseum {
      * (Look, we can return objects too!)
      */
     public static Pokemon buildPokemon() {
-        Pokemon returnPokemon = null;
-        return returnPokemon;
+        System.out.println("Choose from the following Pokemon types: ");
+        System.out.println("1: Electric Pokemon");
+        System.out.println("2: Fire Pokemon");
+        System.out.println("3: Water Pokemon");
+        int poketype = myScan.nextInt();
+        while (poketype != 1 && poketype != 2 && poketype != 3) {
+            System.out.println("Sorry, you  must pick either 1, 2, or 3.");
+            System.out.println("Choose from the following Pokemon types:");
+            System.out.println("1: Electric Pokemon");
+            System.out.println("2: Fire Pokemon");
+            System.out.println("3: Water Pokemon");
+            poketype = myScan.nextInt();
+        }
+        System.out.print("Please name your pokemon: ");
+        String name = myScan.next();
+        System.out.print("How many hit points will it have? (1-50): ");
+        int hitPoints = myScan.nextInt();
+        while (hitPoints < 1 || hitPoints > MAX_HIT_POINTS) {
+            System.out.print("Sorry. Hit points must be between 1 and 50. Enter a new value: ");
+            hitPoints = myScan.nextInt();
+        }
+        System.out.print("Split fifty points between attack level and defense level ");
+        System.out.print("Enter your attack level (1-49): ");
+        int attackLevel = myScan.nextInt();
+        while (attackLevel < 1 || attackLevel > 49) {
+            System.out.print("Sorry. Attack level must be between 1 and 49. Enter a new value: ");
+            attackLevel = myScan.nextInt();
+        }
+        System.out.print("Enter your defense level (1-" + (50 - attackLevel) + "): ");
+        int defenseLevel = myScan.nextInt();
+        while (defenseLevel < 1 || defenseLevel > (50 - attackLevel)) {
+            System.out.print("Sorry. Attack level must be between 1 and " + (50 - attackLevel) + ". Enter a new value: ");
+            defenseLevel = myScan.nextInt();
+        }
+        Pokemon tempPokemon = new Pokemon();
+        tempPokemon.setName(name);
+        tempPokemon.setHitPoints(hitPoints);
+        tempPokemon.setAttackLevel(attackLevel);
+        tempPokemon.setDefenseLevel(defenseLevel);
+        return tempPokemon;
     }
 
     /**
